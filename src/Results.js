@@ -7,6 +7,9 @@ export default function SearchJWords(){
     //create the state for movies, and update that state appropriate
     const [words, setWords] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+
+    const nLvl = ["N1","N2","N3","N4","N5"]
+
     const count = words.length
     // const canScroll = true
     const scroll = 0
@@ -48,6 +51,7 @@ export default function SearchJWords(){
     // console.log(words)
     return (
         <>
+        {/* Start of the container block, that is located in #root */}
             <div className="search-block-container">
                 <form onSubmit={searchJWords}>
                     <div className="search-block">
@@ -87,6 +91,7 @@ export default function SearchJWords(){
                     </div>
                 </form>
             </div>
+
             {/* Shows how many search results -----------------------------------------*/}
             <p className="search-counter-p">
                 { isLoading ? "Searching..." : (count === 0 ? "Search for something..." : count + " Search results") }
@@ -95,7 +100,6 @@ export default function SearchJWords(){
             {/* CARD CODE ------------------------------------------------------------ */}
                 
             {words.map((a, index)=>{
-                    // (needs "return" to work)
                     //ŠĶĪET lens viss ir tpc ka vajag savu proxy uzkodet, jo tas ekstra links ir lens
                     
                     const [translations] = a.senses.map((b, index)=>{return(b.english_definitions.map(c=>{return(`${c}`)}))})
@@ -103,23 +107,15 @@ export default function SearchJWords(){
                     const [reading] =  a.japanese.map( b=> { return(b.reading) })
                     
                     const [searchWord] = a.japanese.map( b=> { return(b.word) })
-                    
-                    // Neatgriez jaut zīmi ??????????????????????????????????????????????????????????????????????????
-                    const jlpt = a.jlpt.map( b =>{ return(b !== "" ? b.slice(-2) : "adwdawdawdawd?")})
-                    // const NNN = jlpt !== "" ? jlpt.length() -2 : ""
-                    
 
-
-
-
-
-
-
+                    const jlpt = a.jlpt.map( b =>{ return(b !== "" && b.slice(-2).toUpperCase())})
 
                     const [wordType] = a.senses.map( b =>{
                         return(b.parts_of_speech.map(d => {
                             return(d)
-                        }) )} )
+                            }) 
+                        )} 
+                    )
                 
 // ------------------------------------search also poga
 
@@ -128,10 +124,7 @@ export default function SearchJWords(){
 
                         // splits both values up and you can add second value in the [], to get the second item, if its not there, it returns as unindentified!
                         const [oneWord] = c.split(/(?<=^\S+)\s/)
-                        // console.log(wordType)
-
-                        // FOR SOME REASON THIS CODE RUNS 2x... the {c}
-
+                            console.log(oneWord)
                     return(
                         <a key={index}
                                 className="see-also-btn btn element-small"
@@ -141,16 +134,16 @@ export default function SearchJWords(){
                                     const searchSeeAlso = e.target.value
                                     setQuery(searchSeeAlso)
                                     window.scroll !== scroll && scrollTop(scroll)
-                                    
                                 }}>
                                 {oneWord}
                             </a>
                             
-                        )} 
+                            )} 
                         ))
                         }
 
                     )
+                    //  test for N level gen.... ~10x wtf
 
 // Here goes the mochup for cards -------------------------------------
                     return(
@@ -185,18 +178,24 @@ export default function SearchJWords(){
                             </div>
 
 {/* ------------------------------------------JLPT LEVELS --------------------------------------------------------- */}
-{/*  needs to be adjusted -> if n5 => toggle class, code should be in className=" {code here...}>N1</div>" */}
+{/*  Loops trough nLvl, which is just a pre-written variety of levels.. any jlpt level that is the same as the nLvl, active class is toggled*/}
                             <div className="jlpt-wrapper">
-                                {/* {const NLevel = (jlpt.length -2)} */}
-                                {console.log(jlpt)}
-                                <div className="element-level row-1">N1</div>
-                                <div className="element-level row-1">N2</div>
-                                <div className="element-level row-1 current-level">N3</div>
-                                <div className="element-level row-1">N4</div>
-                                <div className="element-level row-1">N5</div>
+                                {
+                                nLvl.map( (i, index) => 
+                                    <div key={index} 
+                                            className= {(
+                                            jlpt[0] === i || 
+                                            jlpt[1] === i || 
+                                            jlpt[2] === i || 
+                                            jlpt[3] === i || 
+                                            jlpt[4] === i ? " current-level " : "")
+                                            + " element-level row-1"}>
+                                        {i}
+                                    </div>
+                                    )
+                                }
                             </div>
-
-                            {/* translations -------------------------------------------------*/}
+{/* ------------------------------------------TRANSLATIONS --------------------------------------------------------- */}
                             <div className="meanings-wrapper element">
                                 <h5>Translations:</h5>
                                 <ul>
@@ -204,7 +203,6 @@ export default function SearchJWords(){
                                 </ul>
                             </div>
 {/* ------------------------------------------SENTENCES --------------------------------------------------------- */}
-
                             <div className="sentences-wrapper element">
                                 <b>Jisho.org</b> 
                                 <br/>
@@ -216,28 +214,25 @@ export default function SearchJWords(){
                                         {searchWord}
                                     </a>
                                 }
-
                             </div>
                         </div>
 {/* ------------------------------------------SEARCH ALSO --------------------------------------------------------- */}
-
                         <div class="search-also element-small">
                             <b>See also:</b>
                             { seeAlso !== undefined && seeAlso}
                         </div>
-
                     </div>
                 )
             } )
         }
-
-            {/* Button up> */}
+{/* ------------------------------------------ BUTTON UP --------------------------------------------------------- */}
             {count > 1 && (
-                <button className="button"
+                <button className="switch-lang"
                     onClick={ e => scrollTop(scroll) }>
                     Scroll back to Search
                 </button>
             )}
+{/* End of the container block */}
         </>
     )
 }
