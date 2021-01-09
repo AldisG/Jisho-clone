@@ -1,9 +1,16 @@
 // @use 's';
-$dark :  #273B52;
-$box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
+$dark:  #273B52;
 $div-size: 32px;
 $div-size-l: 40px;
 $widthSmall: 70vw;
+
+// MIXINS-------------------------
+@mixin displayFlexAndCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -212,7 +219,7 @@ input{
                 }
             }
         }
-        }
+    }
     
 
     @media only screen and (max-width: 755px) {

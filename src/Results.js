@@ -8,8 +8,8 @@ export default function SearchJWords(){
     const [words, setWords] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
     const count = words.length
-    const canScroll = true
-    const [smallScroll, largeScroll] = [200, 310]
+    // const canScroll = true
+    const scroll = 0
     const url = `https://jisho.org/api/v1/search/words?keyword=%22${query}%22&`
     // const urlWithProxy = `https://cors-anywhere.herokuapp.com/https://jisho.org/api/v1/search/words?keyword=%22${query}%22&`
     
@@ -36,7 +36,7 @@ export default function SearchJWords(){
         }
         catch(err){console.log("WTF", err)}
         // scroll only when isnt in the right place
-        window.scroll !== largeScroll && scrollTop(largeScroll)
+        window.scroll !== scroll && scrollTop(scroll)
     }
     
     const searchSentencesLink = link =>{
@@ -67,7 +67,7 @@ export default function SearchJWords(){
                                     type="submit" 
                                     onClick={ e => (
                                     searchJWords,
-                                    scrollTop(largeScroll)
+                                    scrollTop(scroll)
                                     )}>
                                     {isLoading ? "Loading" : <img src={Search} className="search-icon" alt=""></img>}
                                 </button>
@@ -87,11 +87,11 @@ export default function SearchJWords(){
                     </div>
                 </form>
             </div>
+            {/* Shows how many search results -----------------------------------------*/}
+            <p className="search-counter-p">
+                { isLoading ? "Searching..." : (count === 0 ? "Search for something..." : count + " Search results") }
+            </p>
 
-            {/* Shows how many search results */}
-            <p className="search-counter-p">{ count === "0" ? "Search for something..." : count + " Search results" } </p>
-            {/* <p className="search-counter-p"> <b>{count}</b> search results</p> */}
-            
             {/* CARD CODE ------------------------------------------------------------ */}
                 
             {words.map((a, index)=>{
@@ -108,15 +108,20 @@ export default function SearchJWords(){
                     const jlpt = a.jlpt.map( b =>{ return(b !== "" ? b.slice(-2) : "adwdawdawdawd?")})
                     // const NNN = jlpt !== "" ? jlpt.length() -2 : ""
                     
+
+
+
+
+
+
+
+
                     const [wordType] = a.senses.map( b =>{
                         return(b.parts_of_speech.map(d => {
                             return(d)
                         }) )} )
                 
 // ------------------------------------search also poga
-
-
-
 
                     const seeAlso = a.senses.map( b =>{
                         return(b.see_also.map((c, index)=>{
@@ -131,14 +136,11 @@ export default function SearchJWords(){
                         <a key={index}
                                 className="see-also-btn btn element-small"
                                 href="#"
-                                // value={oneWord}
-                                // type="text"
-                                
                                 onClick={ e => {
                                     // (e) ir tas, kas šim kodam ļauj strādāt kā tieši attiecināt uz konkrēto elementu (ja lieto tik (c), tad viņš ņem visu sarakstu un nevar padot tekstu uz galveno search funkciju)
                                     const searchSeeAlso = e.target.value
                                     setQuery(searchSeeAlso)
-                                    window.scroll !== largeScroll && scrollTop(largeScroll)
+                                    window.scroll !== scroll && scrollTop(scroll)
                                     
                                 }}>
                                 {oneWord}
@@ -149,14 +151,14 @@ export default function SearchJWords(){
                         }
 
                     )
-                    // Here goes the mochup
+
+// Here goes the mochup for cards -------------------------------------
                     return(
                     <div className="card">
                         <div key={index} className="card-container has-a-gap">
 
 {/* ------------------------------------------KANJI & READING --------------------------------------------------------- */}
                             <div className="translation-container has-a-gap">
-
 
                                 <div className="kanji element row-1">
                                     <div>{searchWord}</div>
@@ -167,7 +169,7 @@ export default function SearchJWords(){
                                 </div>        
                             </div>        
                                 
-{/* ------------------------------------------COMMON % WORD TYPE --------------------------------------------------------- */}
+{/* ------------------------------------------COMMON & WORD TYPE --------------------------------------------------------- */}
 
                             <div className="common-type-container has-a-gap">
                                 <div className="common element row-1">
@@ -183,15 +185,15 @@ export default function SearchJWords(){
                             </div>
 
 {/* ------------------------------------------JLPT LEVELS --------------------------------------------------------- */}
-
+{/*  needs to be adjusted -> if n5 => toggle class, code should be in className=" {code here...}>N1</div>" */}
                             <div className="jlpt-wrapper">
                                 {/* {const NLevel = (jlpt.length -2)} */}
                                 {console.log(jlpt)}
-                                <div className="element-level row-1">{jlpt}</div>
-                                <div className="element-level row-1">{jlpt}</div>
-                                <div className="element-level row-1 current-level">{jlpt}</div>
-                                <div className="element-level row-1">{jlpt}</div>
-                                <div className="element-level row-1">{jlpt}</div>
+                                <div className="element-level row-1">N1</div>
+                                <div className="element-level row-1">N2</div>
+                                <div className="element-level row-1 current-level">N3</div>
+                                <div className="element-level row-1">N4</div>
+                                <div className="element-level row-1">N5</div>
                             </div>
 
                             {/* translations -------------------------------------------------*/}
@@ -201,8 +203,6 @@ export default function SearchJWords(){
                                     {translations.map( (a, index) => <li key={index}>{index + 1}) {a}</li> )}    
                                 </ul>
                             </div>
-
-
 {/* ------------------------------------------SENTENCES --------------------------------------------------------- */}
 
                             <div className="sentences-wrapper element">
@@ -218,7 +218,6 @@ export default function SearchJWords(){
                                 }
 
                             </div>
-
                         </div>
 {/* ------------------------------------------SEARCH ALSO --------------------------------------------------------- */}
 
@@ -230,195 +229,15 @@ export default function SearchJWords(){
                     </div>
                 )
             } )
-                }
-
+        }
 
             {/* Button up> */}
             {count > 1 && (
                 <button className="button"
-                    onClick={ e => scrollTop(smallScroll) }>
+                    onClick={ e => scrollTop(scroll) }>
                     Scroll back to Search
                 </button>
             )}
-
-
-                    
-{/* <hr/>
-                <div className="card">
-
-                    <div className="card-container has-a-gap">
-                        <div className="translation-container has-a-gap">
-                            <div className="kanji element row-1">
-                                <div>犬犬犬</div>
-                            </div>
-                            <div className="reading element row-1">
-                                <div>いぬ</div>
-                            </div>                 
-                        </div>
-
-                        <div className="common-type-container has-a-gap">
-                            <div className="common element row-1">
-                                <div>common word</div>
-                            </div>
-                            <div className="word-type element row-1">
-                                <div>noun, suru verb</div>
-                            </div>
-                        </div>
-
-                        <div className="jlpt-wrapper">
-                            <div className="element-level row-1">N1</div>
-                            <div className="element-level row-1">N2</div>
-                            <div className="element-level row-1 current-level">N3</div>
-                            <div className="element-level row-1">N4</div>
-                            <div className="element-level row-1">N5</div>
-                        </div>
-                        
-                        <div className="meanings-wrapper element">
-                            <h5>Translations:</h5>
-                            <ul>
-                                <li>1 Meaning dogMeaning dog Meaning dogMeaning dogMeaning dogMeaning dogMeaning dogMeaning dogMeaning dogMeaning dogMeaning dogMeaning dog</li>
-                                <li>2 Meaning Dog 2</li>
-                                <li>3 Meaning dog 3</li>
-                                <li>3 Meaning dog 3</li>
-                                <li>3 Meaning dog 3</li>
-                            </ul>
-                        </div>
-                        <div className="sentences-wrapper element">
-                            <b>Jisho.org</b> 
-                            <br/>
-                            <p>Sentences with: </p>
-                            <a href="#" className="see-sentences-btn btn element-small">
-                                bouken
-                            </a>  
-                        </div>
-                    </div>
-
-                    <div className="search-also element-small">
-                        <b>See also:</b>
-                        <a href="#" className="see-also-btn btn element-small">Dog 1</a>
-                        <a href="#" className="see-also-btn btn element-small">Dog 2</a>
-                    </div>
-
-                </div> */}
-                        {/* {
-                            count > 1 && (
-                                <button className="button"
-                                    onClick={ e => scrollTop(smallScroll) }>
-                                    Scroll back to Search
-                                </button>
-                            )
-                        } */}
-
         </>
     )
 }
-
-
-
-// <div className="body">
-//             <form className="search-block-container" onSubmit={searchJWords}>
-//                 <p className="search-counter-p">
-//                     {count === 0 ? (isLoading ? "Loading.." : "Search a word") : (isLoading ? "Loading.." : "Search something else?")}
-//                 </p>
-
-//                 {/* <label className="label" htmlFor="query">Search for...</label> */}
-
-//                 <input className="input" 
-//                     type="text" 
-//                     name="query"
-//                     placeholder="Search for a word..."
-//                     value={query} 
-//                     onChange={ e => setQuery(e.target.value)}
-//                 />
-                
-//                 <button className="search-btn"
-//                     type="submit" 
-//                     onClick={ e => (
-//                         searchJWords,
-//                         scrollTop(largeScroll)
-//                     )}>
-//                     {isLoading ? "Searching.." : "Search"}
-//                  </button>
-
-//                 <p className="search-counter-p"> <b>{count}</b> search results</p>
-
-//                 {words.map((a, index)=>{
-//                     // (needs "return" to work)
-//                     //ŠĶĪET lens viss ir tpc ka vajag savu proxy uzkodet, jo tas ekstra links ir lens
-                    
-//                     const [translations] = a.senses.map((b, index)=>{return(b.english_definitions.map(c=>{return(`${c}`)}))})
-                    
-//                     const [reading] =  a.japanese.map( b=> { return(b.reading) })
-                    
-//                     const [searchWord] = a.japanese.map( b=> { return(b.word) })
-                    
-//                     const jlpt = a.jlpt.map( b =>{ return(b !== "" ? `[${b}]` : "?")})
-                    
-//                     const [wordType] = a.senses.map( b =>{
-//                         return(b.parts_of_speech.map(d => {
-//                             return(d)
-//                         }) )} )
-                
-// ------------------------------------search also poga
-
-//                     const seeAlso = a.senses.map( b =>{return(b.see_also.map((c, index)=>{
-
-//                             // splits both values up and you can add second value in the [], to get the second item, if its not there, it returns as unindentified!
-//                             const [oneWord] = c.split(/(?<=^\S+)\s/)
-//                             // console.log(wordType)
-
-//                             // FOR SOME REASON THIS CODE RUNS 2x... the {c}
-//                         return(
-//                         <div key={index}>
-//                         <button 
-//                             className="search-also"
-//                             value={oneWord}
-//                             type="text"
-                            
-//                             onClick={ e => {
-//                                 // (e) ir tas, kas šim kodam ļauj strādāt kā tieši attiecināt uz konkrēto elementu (ja lieto tik (c), tad viņš ņem visu sarakstu un nevar padot tekstu uz galveno search funkciju)
-//                                 const searchSeeAlso = e.target.value
-//                                 setQuery(searchSeeAlso)
-                                
-//                                 window.scroll !== largeScroll && scrollTop(largeScroll)
-//                             }}>
-//                             {oneWord}
-//                         </button>
-                            
-//                         </div>
-//                     )} )) })
-                    
-//                     return(
-//                         <div key={index}>
-                        
-//                             <h1>{searchWord}</h1>
-//                             <h3>[{reading}]</h3>
-                            
-//                             <h4>
-//                                 Word type: {wordType.map(
-//                                         (x,i,arr) => (i < arr.length-1) ? (` ${x},`) : (` ${x}`))
-//                                     }
-//                             </h4>
-                            
-//                             <h5>{a.is_common && "(Is common)"}</h5>
-//                             <p>{jlpt}</p> 
-                             
-//                             { seeAlso !== [] && (<div>{seeAlso}</div>) }
-                            
-//                             <a href={`https://jisho.org/search/${searchWord}%20%23sentences`}>
-//                                 Search sentences with: {searchWord}
-//                             </a>
-//                             <ul>
-//                                 {translations.map( (a, index) => <li key={index}>{a}</li> )}
-//                             </ul>
-//                         </div>
-//                 )} )}
-//             </form>
-//             {count > 1 && (
-//                 <button className="button"
-//                     onClick={ e => scrollTop(smallScroll) }>
-//                     Scroll back to Search
-//                 </button>
-//             )}
-
-//         </div>

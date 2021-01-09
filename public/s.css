@@ -35,20 +35,16 @@ input:hover {
 }
 
 .body .search-block-container form {
-  padding: 0 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 0 2rem;
 }
 
 .body .search-block-container form .search-block {
@@ -68,9 +64,6 @@ input:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   gap: 1rem;
   width: 70vw;
 }
@@ -116,18 +109,18 @@ input:hover {
 }
 
 .body .search-block-container form .search-block .search-jp-eng-search-container .switch-lang {
-  opacity: .8;
-  width: 50px;
-  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: .8;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   -webkit-filter: none;
           filter: none;
@@ -228,12 +221,6 @@ input:hover {
     padding: .4rem;
     width: 12rem;
     line-height: 0;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
   html .body .search-block-container .search-block .search-jp-eng-search-container .lang-btn-container .switch-lang {
     width: 70px;
@@ -272,7 +259,6 @@ input:hover {
   }
   html .body #search-block-container {
     position: relative;
-    position: relative;
   }
   html .body #search-block-container .search-block .search-jp-eng-search-container {
     -webkit-box-orient: vertical;
@@ -309,8 +295,6 @@ input:hover {
   color: #273B52;
   background: -webkit-gradient(linear, left top, left bottom, from(#3E6CBA), to(#469EC0));
   background: linear-gradient(to bottom, #3E6CBA, #469EC0);
-  -webkit-box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
-          box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
   font-size: 1rem;
 }
 
@@ -352,7 +336,7 @@ input:hover {
   -ms-grid-column-span: 3;
   grid-area: one;
   gap: .7rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .body .card .card-container .translation-container .kanji,
@@ -368,10 +352,14 @@ input:hover {
           justify-content: center;
   text-align: center;
   width: 100%;
-  -webkit-box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
-          box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
+  -webkit-box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
+          box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
   background: #ffffff;
   padding: .4rem;
+}
+
+.body .card .card-container .translation-container .reading {
+  font-size: 1.2rem;
 }
 
 .body .card .card-container .common-type-container {
@@ -383,20 +371,20 @@ input:hover {
 
 .body .card .card-container .common-type-container .common,
 .body .card .card-container .common-type-container .word-type {
-  width: 100%;
-  padding: 0 4px;
-  font-size: .8rem;
-  text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 100%;
+  padding: 0 4px;
+  font-size: .8rem;
+  text-align: center;
+  margin: 0 auto;
   background: #B3C7E5;
 }
 
@@ -442,8 +430,8 @@ input:hover {
   grid-area: four;
   padding: .7rem;
   background-color: #ffffff;
-  -webkit-box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
-          box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
+  -webkit-box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
+          box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
 }
 
 .body .card .card-container .meanings-wrapper ul {
@@ -465,8 +453,8 @@ input:hover {
 
 .body .card .btn {
   background-color: #ffffff;
-  -webkit-box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
-          box-shadow: 2px -4px 3px rgba(135, 189, 243, 0.4);
+  -webkit-box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
+          box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
   padding: .2rem .4rem;
   opacity: .6;
   -webkit-transition: opacity .3s, -webkit-box-shadow .3s;
