@@ -1,0 +1,254 @@
+:root {
+  --lineHeight: 40px;
+  --box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
+  --box-shadow-dark: -2px 4px 3px rgba(11, 11, 11, 0.55);
+  --box-shadow: -2px 4px 3px rgba(11, 11, 11, 0.25);
+}
+
+html {
+  font-family: "Montserrat",sans-serif;
+  font-weight: regular;
+  font-size: 14px;
+}
+
+#root .body .card {
+  padding: .7rem;
+  margin: 0 auto;
+  max-width: 70vw;
+  border-radius: 6px;
+  color: #273B52;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3E6CBA), to(#469EC0));
+  background: linear-gradient(to bottom, #3E6CBA, #469EC0);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  font-size: 1rem;
+}
+
+#root .body .card a {
+  color: #273B52;
+}
+
+#root .body .card .element {
+  border-radius: 6px;
+}
+
+#root .body .card .element-small,
+#root .body .card .element-level {
+  border-radius: 4px;
+  text-align: center;
+}
+
+#root .body .card .translation-wrapper,
+#root .body .card .translation-container,
+#root .body .card .common-type-container,
+#root .body .card .jlpt-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#root .body .card .card-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-areas: 'one one one two three' 'four four four four five' 'four four four four .';
+  gap: .8rem;
+}
+
+#root .body .card .card-container .translation-container {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: one;
+  gap: .7rem;
+  font-size: 2rem;
+}
+
+#root .body .card .card-container .translation-container .kanji,
+#root .body .card .card-container .translation-container .reading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 100%;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  background: #ffffff;
+  padding: .4rem;
+}
+
+#root .body .card .card-container .common-type-container {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: two;
+  gap: .7rem;
+}
+
+#root .body .card .card-container .common-type-container .common,
+#root .body .card .card-container .common-type-container .word-type {
+  width: 100%;
+  font-weight: 300;
+  padding: 0 4px;
+  font-size: .8rem;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #B3C7E5;
+}
+
+#root .body .card .card-container .common-type-container .common div,
+#root .body .card .card-container .common-type-container .word-type div {
+  text-align: center;
+}
+
+#root .body .card .card-container .jlpt-wrapper {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: three;
+  gap: .2rem;
+  font-size: 1rem;
+}
+
+#root .body .card .card-container .jlpt-wrapper .element-level {
+  padding: .4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  background-color: #8CA9D7;
+  color: #576C8B;
+}
+
+#root .body .card .card-container .jlpt-wrapper .current-level {
+  background-color: #D9D56C;
+  color: #273B52;
+}
+
+#root .body .card .card-container .meanings-wrapper {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: four;
+  padding: .7rem;
+  background-color: #ffffff;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+
+#root .body .card .card-container .meanings-wrapper ul {
+  margin-top: 1rem;
+}
+
+#root .body .card .card-container .sentences-wrapper {
+  -ms-grid-row: 2;
+  -ms-grid-column: 5;
+  grid-area: five;
+  padding: .8rem;
+  background-color: #8CA9D7;
+}
+
+#root .body .card .card-container .sentences-wrapper .see-sentences-btn {
+  display: block;
+  margin-top: .8rem;
+}
+
+#root .body .card .btn {
+  background-color: #ffffff;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  padding: .2rem .4rem;
+  -webkit-transition: -webkit-box-shadow .3s;
+  transition: -webkit-box-shadow .3s;
+  transition: box-shadow .3s;
+  transition: box-shadow .3s, -webkit-box-shadow .3s;
+}
+
+#root .body .card .btn:hover {
+  -webkit-box-shadow: var(--box-shadow-dark);
+          box-shadow: var(--box-shadow-dark);
+}
+
+#root .body .search-also {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#root .body .search-also a {
+  margin-left: .7rem;
+}
+
+@media only screen and (max-width: 755px) {
+  #root html {
+    font-size: 14px;
+  }
+  #root html #root .body .card {
+    max-width: 90vw;
+  }
+  #root html #root .body .card .card-container {
+    -ms-grid-columns: (5fr)[5];
+        grid-template-columns: repeat(5, 5fr);
+        grid-template-areas: 'one one one one two' 'four four four four three' 'four four four four five' 'four four four four .';
+  }
+  #root html #root .body .card .card-container .translation-container {
+    font-size: 1.8rem;
+  }
+  #root html #root .body .card .card-container .common-type-container .word-type,
+  #root html #root .body .card .card-container .common-type-container .common {
+    font-size: .8rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #root html {
+    font-size: 12px;
+  }
+  #root html #root .body .card {
+    gap: 1rem;
+  }
+  #root html #root .body .card .element {
+    border-radius: 4px;
+  }
+  #root html #root .body .card .card-container {
+    grid-gap: .7rem;
+  }
+  #root html #root .body .card .card-container .translation-container {
+    font-size: 1.8rem;
+  }
+  #root html #root .body .card .card-container .common-type-container .word-type,
+  #root html #root .body .card .card-container .common-type-container .common {
+    font-size: .6rem;
+  }
+  #root html #root .body .card .card-container .jlpt-wrapper {
+    font-size: .8rem;
+  }
+  #root html #root .body .card .card-container .jlpt-wrapper .element-level {
+    padding: .6rem .1rem;
+  }
+}
